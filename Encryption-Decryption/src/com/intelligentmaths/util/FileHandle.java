@@ -94,24 +94,54 @@ public class FileHandle {
 
 				int positionSelectedText = xList.get(k).indexOf(
 						textBeforeEncryption);
+				
+				System.out.println("positionSelectedText = " +  positionSelectedText);
 
 				int positionBeforeEncryption = textBeforeEncryption.length();
+				
+				System.out.println("positionBeforeEncryption = " +  positionBeforeEncryption);
+				
 
 				int positionForEncryption = xList.get(k).length();
+				
+				System.out.println("positionForEncryption = " +  positionForEncryption);
 
+				//String normalPartOfString = xList.get(k).substring(
+				//		positionSelectedText, positionBeforeEncryption);
+				
 				String normalPartOfString = xList.get(k).substring(
-						positionSelectedText, positionBeforeEncryption);
+						0, (positionSelectedText + positionBeforeEncryption));
+				
+				System.out.println("normalPartOfString = " +  normalPartOfString);
 
+				//String encryptPartOfString = xList.get(k).substring(
+				//		positionBeforeEncryption, positionForEncryption);
+				int chopPosition = positionSelectedText + positionBeforeEncryption ;
+				
+				System.out.println("chopPosition = " + chopPosition);
+				
 				String encryptPartOfString = xList.get(k).substring(
-						positionBeforeEncryption, positionForEncryption);
+						chopPosition);
+				
+				
+				System.out.println("encryptPartOfString = " +  encryptPartOfString);
 
 				CrypticOperations crypto = new CrypticOperations();
 
 				String cryptString = crypto.encrypt(key, encryptPartOfString);
+				
+				System.out.println("cryptString = " +  cryptString);
 
 				String combinedCrypto = normalPartOfString + cryptString;
+				
+				System.out.println("combinedCrypto = " +  combinedCrypto);
 
 				writeToTextFile(encryptedFile, combinedCrypto);
+				
+				positionSelectedText = 0;
+				positionBeforeEncryption = 0;
+				positionForEncryption = 0;
+				chopPosition = 0;
 
 			}
 
@@ -144,16 +174,29 @@ public class FileHandle {
 
 				int positionSelectedText = xList.get(k).indexOf(
 						textBeforeDecryption);
+				
+				System.out.println("positionSelectedText = " + positionSelectedText);
+				
 
 				int positionBeforeEncryption = textBeforeDecryption.length();
+				
+				System.out.println("positionBeforeEncryption = " + positionBeforeEncryption);
 
-				int positionForEncryption = xList.get(k).length();
+				//int positionForEncryption = xList.get(k).length();
 
 				String normalPartOfString = xList.get(k).substring(
-						positionSelectedText, positionBeforeEncryption);
+						0, (positionSelectedText + positionBeforeEncryption));
+				
+				System.out.println("normalPartOfString = " + normalPartOfString);
+				
+				int chopPosition = positionSelectedText + positionBeforeEncryption ;
+				
+				System.out.println("chopPosition = " + chopPosition);
 
 				String encryptPartOfString = xList.get(k).substring(
-						positionBeforeEncryption, positionForEncryption);
+						chopPosition);
+				
+				System.out.println("encryptPartOfString = " + encryptPartOfString);
 
 				CrypticOperations crypto = new CrypticOperations();
 

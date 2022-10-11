@@ -50,7 +50,8 @@ public class CrypticOperations {
 
 		// encode bytes to base64 to get a string
 
-		encRetStr = new sun.misc.BASE64Encoder().encode(enc);
+		//encRetStr = new sun.misc.BASE64Encoder().encode(enc);
+		encRetStr = java.util.Base64.getEncoder().encodeToString(enc);
 
 		return encRetStr;
 	}
@@ -64,7 +65,8 @@ public class CrypticOperations {
 
 		// decode base64 to get bytes
 
-		byte[] dec = new sun.misc.BASE64Decoder().decodeBuffer(str);
+		//byte[] dec = new sun.misc.BASE64Decoder().decodeBuffer(str);
+		byte[] dec = java.util.Base64.getDecoder().decode(str);
 
 		Key secretKey = new SecretKeySpec(key.getBytes(), ALGORITHM);
 
